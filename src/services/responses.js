@@ -4,7 +4,7 @@ function successResponse (payload, code = 200) {
 }
 
 function errorResponse (error, code = 400) {
-    this.body = { status: false, error }
+    this.body = { status: false, error: error.message }
     this.status = code
 }
 

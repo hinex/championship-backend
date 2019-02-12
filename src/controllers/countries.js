@@ -1,7 +1,10 @@
 const Countries = require('../repositories/countries')
+const Validation = require('../services/validation')
 
 const create = async (ctx, next) => {
     try {
+        Validation.createCountries(ctx)
+
         await Countries.create()
 
         ctx.successResponse()

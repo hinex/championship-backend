@@ -1,14 +1,18 @@
 const Koa = require('koa')
 const Config = require('config')
-const Contollers = require('./contollers')
-const Responces = require('./services/responcies')
+const Controllers = require('./controllers')
+const Responses = require('./services/responses')
+const Validator = require('koa-request-validation')
+const BodyParser = require('koa-bodyparser')
 
 const app = new Koa()
 
-app.context.successResponse = Responces.successResponse
-app.context.errorResponse = Responces.errorResponse
+app.context.successResponse = Responses.successResponse
+app.context.errorResponse = Responses.errorResponse
 
+app.use(BodyParser())
+app.use(Validator())
 app
-    .use(Contollers.routes())
-    .use(Contollers.allowedMethods())
+    .use(Controllers.routes())
+    .use(Controllers.allowedMethods())
     .listen(Config.get('General.port'))
