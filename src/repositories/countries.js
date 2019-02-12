@@ -1,15 +1,24 @@
 const DB = require('../db')
 
-const create = payload => {
-
+const create = async payload => {
+    return DB('countries')
+        .insert(payload)
 }
 
-const update = (id, payload) => {
-
+const update = async (id, payload) => {
+    return DB('countries')
+        .where({ id: id })
+        .update(payload)
 }
 
-const remove = id => {
+const remove = async id => {
+    await DB('teams')
+        .where({ country: id })
+        .del()
 
+    return DB('countries')
+        .where({ id: id })
+        .del()
 }
 
 const getCountries = async () => {

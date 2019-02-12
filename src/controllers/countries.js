@@ -5,7 +5,11 @@ const create = async (ctx, next) => {
     try {
         Validation.createCountry(ctx)
 
-        await Countries.create()
+        const { name } = ctx.request.body
+
+        await Countries.create({
+            name,
+        })
 
         ctx.successResponse()
     } catch (e) {
@@ -30,7 +34,12 @@ const getList = async (ctx, next) => {
 const update = async (ctx, next) => {
     try {
         Validation.updateCountry(ctx)
-        await Countries.update()
+
+        const { id, name } = ctx.request.body
+
+        await Countries.update(id, {
+            name,
+        })
 
         ctx.successResponse()
     } catch (e) {
@@ -43,7 +52,10 @@ const update = async (ctx, next) => {
 const remove = async (ctx, next) => {
     try {
         Validation.removeCountry(ctx)
-        await Countries.remove()
+
+        const { id } = ctx.request.body
+
+        await Countries.remove(id)
 
         ctx.successResponse()
     } catch (e) {

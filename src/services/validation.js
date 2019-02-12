@@ -10,7 +10,7 @@ const createCountry = ctx => {
 
 const updateCountry = ctx => {
     const body = Joi.object().keys({
-        id: Joi.string().numeric().required(),
+        id: Joi.number().integer().required(),
         name: Joi.string().alphanum().min(3).max(30).required(),
     })
 
@@ -19,7 +19,7 @@ const updateCountry = ctx => {
 
 const removeCountry = ctx => {
     const body = Joi.object().keys({
-        id: Joi.string().numeric().required(),
+        id: Joi.number().integer().required(),
     })
 
     ctx.validateBody(body)
@@ -27,7 +27,7 @@ const removeCountry = ctx => {
 
 const createTeam = ctx => {
     const body = Joi.object().keys({
-        country: Joi.string().numeric().required(),
+        country: Joi.number().integer().required(),
         name: Joi.string().alphanum().min(3).max(30).required(),
     })
 
@@ -36,8 +36,8 @@ const createTeam = ctx => {
 
 const updateTeam = ctx => {
     const body = Joi.object().keys({
-        id: Joi.string().numeric().required(),
-        country: Joi.string().numeric().required(),
+        id: Joi.number().integer().required(),
+        country: Joi.number().integer().required(),
         name: Joi.string().alphanum().min(3).max(30).required(),
     })
 
@@ -46,7 +46,7 @@ const updateTeam = ctx => {
 
 const removeTeam = ctx => {
     const body = Joi.object().keys({
-        id: Joi.string().numeric().required(),
+        id: Joi.number().integer().required(),
     })
 
     ctx.validateBody(body)
@@ -54,7 +54,7 @@ const removeTeam = ctx => {
 
 const getOneTeam = ctx => {
     const query = Joi.object().keys({
-        id: Joi.string().numeric().required(),
+        id: Joi.number().integer().required(),
     })
 
     ctx.validateQuery(query)
