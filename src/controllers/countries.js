@@ -3,7 +3,7 @@ const Validation = require('../services/validation')
 
 const create = async (ctx, next) => {
     try {
-        Validation.createCountries(ctx)
+        Validation.createCountry(ctx)
 
         await Countries.create()
 
@@ -29,6 +29,7 @@ const getList = async (ctx, next) => {
 
 const update = async (ctx, next) => {
     try {
+        Validation.updateCountry(ctx)
         await Countries.update()
 
         ctx.successResponse()
@@ -41,6 +42,7 @@ const update = async (ctx, next) => {
 
 const remove = async (ctx, next) => {
     try {
+        Validation.removeCountry(ctx)
         await Countries.remove()
 
         ctx.successResponse()

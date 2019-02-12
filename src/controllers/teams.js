@@ -1,7 +1,9 @@
 const Teams = require('../repositories/teams')
+const Validation = require('../services/validation')
 
 const create = async (ctx, next) => {
     try {
+        Validation.createTeam(ctx)
         await Teams.create()
 
         ctx.successResponse()
@@ -26,7 +28,8 @@ const getList = async (ctx, next) => {
 
 const update = async (ctx, next) => {
     try {
-        await Teams.create()
+        Validation.updateTeam(ctx)
+        await Teams.update()
 
         ctx.successResponse()
     } catch (e) {
@@ -38,6 +41,7 @@ const update = async (ctx, next) => {
 
 const remove = async (ctx, next) => {
     try {
+        Validation.removeTeam(ctx)
         await Teams.create()
 
         ctx.successResponse()
@@ -50,6 +54,7 @@ const remove = async (ctx, next) => {
 
 const getOne = async (ctx, next) => {
     try {
+        Validation.getOneTeam(ctx)
         await Teams.getTeams()
 
         ctx.successResponse()
