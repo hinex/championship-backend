@@ -1,31 +1,55 @@
-const create = (ctx, next) => {
+const Countries = require('../repositories/countries')
+
+const create = async (ctx, next) => {
+    try {
+        await Countries.create()
+
+        ctx.successResponse()
+    } catch (e) {
+        ctx.errorResponse(e)
+    }
 
     return next()
 }
 
-const getList = (ctx, next) => {
+const getList = async (ctx, next) => {
+    try {
+        const countries = await Countries.getCountries()
+
+        ctx.successResponse(countries)
+    } catch (e) {
+        ctx.errorResponse(e)
+    }
 
     return next()
 }
 
-const update = (ctx, next) => {
+const update = async (ctx, next) => {
+    try {
+        await Countries.update()
+
+        ctx.successResponse()
+    } catch (e) {
+        ctx.errorResponse(e)
+    }
 
     return next()
 }
 
-const remove = (ctx, next) => {
+const remove = async (ctx, next) => {
+    try {
+        await Countries.remove()
 
-    return next()
-}
-
-const getOne = (ctx, next) => {
+        ctx.successResponse()
+    } catch (e) {
+        ctx.errorResponse(e)
+    }
 
     return next()
 }
 
 module.exports = {
     create,
-    getOne,
     getList,
     update,
     remove,

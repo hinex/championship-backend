@@ -12,13 +12,14 @@ const remove = id => {
 
 }
 
-const getCountries = () => {
-
+const getTeams = id => {
+    return DB('countries')
+        .returning('*')
 }
 
 module.exports = {
     create,
     update,
     remove,
-    getCountries,
+    getTeams,
 }

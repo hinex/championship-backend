@@ -12,13 +12,14 @@ const remove = id => {
 
 }
 
-const getTeams = id => {
-
+const getCountries = async () => {
+    return DB('countries')
+        .returning('*')
 }
 
 module.exports = {
     create,
     update,
     remove,
-    getTeams,
+    getCountries,
 }
