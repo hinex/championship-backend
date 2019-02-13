@@ -1,7 +1,6 @@
 module.exports = {
     General: {
         port: process.env.API_PORT || 5000,
-        api_prefix: process.env.API_PREFIX || '/api',
         cors: true,
     },
     Database: {
