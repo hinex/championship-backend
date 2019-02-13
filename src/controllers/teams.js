@@ -4,7 +4,13 @@ const Validation = require('../services/validation')
 const create = async (ctx, next) => {
     try {
         Validation.createTeam(ctx)
-        await Teams.create()
+
+        const { country, name } = ctx.request.body
+
+        await Teams.create({
+            country,
+            name,
+        })
 
         ctx.successResponse()
     } catch (e) {
@@ -16,7 +22,7 @@ const create = async (ctx, next) => {
 
 const getList = async (ctx, next) => {
     try {
-        const teams = await Teams.getTeams()
+        const teams = await Teams.getList()
 
         ctx.successResponse(teams)
     } catch (e) {
@@ -29,7 +35,13 @@ const getList = async (ctx, next) => {
 const update = async (ctx, next) => {
     try {
         Validation.updateTeam(ctx)
-        await Teams.update()
+
+        const { id, country, name } = ctx.request.body
+
+        await Teams.update(id, {
+            country,
+            name,
+        })
 
         ctx.successResponse()
     } catch (e) {
@@ -42,7 +54,10 @@ const update = async (ctx, next) => {
 const remove = async (ctx, next) => {
     try {
         Validation.removeTeam(ctx)
-        await Teams.create()
+
+        const { id } = ctx.request.body
+
+        await Teams.remove(id)
 
         ctx.successResponse()
     } catch (e) {
@@ -55,7 +70,10 @@ const remove = async (ctx, next) => {
 const getOne = async (ctx, next) => {
     try {
         Validation.getOneTeam(ctx)
-        await Teams.getTeams()
+
+        const { id } = ctx.request.query
+
+        await Teams.getOne(id)
 
         ctx.successResponse()
     } catch (e) {
