@@ -9,4 +9,4 @@ module.exports = {
         user: process.env.DB_USER || 'tt_user',
         password: process.env.DB_PASSWORD || 'tt_password',
     },
-};
+}
