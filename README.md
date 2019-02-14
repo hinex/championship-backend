@@ -66,6 +66,7 @@ npm run start
 Country Creation Method.
 
 Payload description:
+
 | Key  | Description     | Is Required? |
 | ---- |:---------------:| ------------:|
 | name | Name of country | yes          |
@@ -98,6 +99,7 @@ curl -X POST \
 Country Update Method.
 
 Payload description:
+
 | Key     | Description       | Is Required? |
 | ------- |:-----------------:| ------------:|
 | id      | Id of update item | yes          |
@@ -130,6 +132,7 @@ curl -X PUT \
 Country Delete Method.
 
 Payload description:
+
 | Key     | Description        | Is Required? |
 | ------- |:------------------:| ------------:|
 | id      | Id of deleted item | yes          |
