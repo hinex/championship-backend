@@ -109,7 +109,6 @@ Payload description:
 curl -X POST \
   http://localhost:5000/countries/create \
   -H 'Content-Type: application/json' \
-  -H 'cache-control: no-cache' \
   -d '{"name": "Turkey"}'
 ```
 
@@ -163,6 +162,139 @@ curl -X PUT \
 
 #### DELETE /countries/delete
 Country Delete Method.
+
+Payload description:
+
+| Key     | Description     | Is Required? |
+| ------- |:---------------:| ------------:|
+| id      | Item ID         | yes          |
+
+*Request:*
+```bash
+curl -X DELETE \
+  http://localhost:5000/teams/delete \
+  -H 'Content-Type: application/json' \
+  -d '{"id": 3}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"id\" fails because [\"id\" is required]"
+}
+```
+
+#### GET /teams
+
+*Response:*
+```json
+{
+    "status": true,
+    "result": [
+        {
+            "id": 1,
+            "country": "Russia",
+            "name": "Spartak Moscow",
+            "created_at": "2019-02-13T07:51:59.739Z",
+            "updated_at": "2019-02-13T07:51:59.739Z"
+        },
+    ]
+}
+```
+
+#### GET /teams/1
+
+*Response:*
+```json
+{
+    "status": true,
+    "result": {
+        "id": 1,
+        "country": 1,
+        "name": "Spartak Moscow",
+        "created_at": "2019-02-13T07:51:59.739Z",
+        "updated_at": "2019-02-13T07:51:59.739Z"
+    }
+}
+```
+
+#### POST /teams/create
+Team Creation Method.
+
+Payload description:
+
+| Key     | Description     | Is Required? |
+| ------- |:---------------:| ------------:|
+| name    | Name of team    | yes          |
+| country | Country ID      | yes          |
+
+*Request:*
+```bash
+curl -X POST \
+  http://localhost:5000/teams/create \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "FC Bishkek", "country": 3}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"country\" fails because [\"country\" is required]. child \"name\" fails because [\"name\" is required]"
+}
+```
+
+#### PUT /teams/update
+Teams Update Method.
+
+Payload description:
+
+| Key     | Description     | Is Required? |
+| ------- |:---------------:| ------------:|
+| id      | Item ID         | yes          |
+| name    | Name of country | yes          |
+| country | Country ID      | yes          |
+
+*Request:*
+```bash
+curl -X PUT \
+  http://localhost:5000/teams/update \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "FC Egypt", "id": 9, "country": 3}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"id\" fails because [\"id\" is required]. child \"name\" fails because [\"name\" is required]"
+}
+```
+
+#### DELETE /teams/delete
+Teams Delete Method.
 
 Payload description:
 

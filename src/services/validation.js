@@ -10,7 +10,7 @@ const getCountry = ctx => {
 
 const createCountry = ctx => {
     const body = Joi.object().keys({
-        name: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().min(3).max(30).required(),
     })
 
     ctx.validateBody(body)
@@ -19,7 +19,7 @@ const createCountry = ctx => {
 const updateCountry = ctx => {
     const body = Joi.object().keys({
         id: Joi.number().integer().required(),
-        name: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().min(3).max(30).required(),
     })
 
     ctx.validateBody(body)
@@ -36,7 +36,7 @@ const removeCountry = ctx => {
 const createTeam = ctx => {
     const body = Joi.object().keys({
         country: Joi.number().integer().required(),
-        name: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().min(3).max(30).required(),
     })
 
     ctx.validateBody(body)
@@ -46,7 +46,7 @@ const updateTeam = ctx => {
     const body = Joi.object().keys({
         id: Joi.number().integer().required(),
         country: Joi.number().integer().required(),
-        name: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().min(3).max(30).required(),
     })
 
     ctx.validateBody(body)

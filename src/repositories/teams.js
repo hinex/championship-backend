@@ -1,11 +1,24 @@
 const DB = require('../db')
+const Countries = require('./countries')
 
 const create = async payload => {
+    const country = await Countries.getOne(payload.country)
+
+    if (!country) {
+        throw new Error('Country not found')
+    }
+
     return DB('teams')
         .insert(payload)
 }
 
 const update = async (id, payload) => {
+    const country = await Countries.getOne(payload.country)
+
+    if (!country) {
+        throw new Error('Country not found')
+    }
+
     return DB('teams')
         .where({ id: id })
         .update(payload)
