@@ -1,5 +1,6 @@
 const Countries = require('../repositories/countries')
 const Validation = require('../services/validation')
+const Teams = require('../repositories/teams')
 
 const create = async (ctx, next) => {
     try {
@@ -65,9 +66,36 @@ const remove = async (ctx, next) => {
     return next()
 }
 
+const getCountry = async (ctx, next) => {
+    try {
+        Validation.getCountry(ctx)
+
+        const { id } = ctx.params
+
+        const country = await Countries.getOne(id)
+
+        if (!country) {
+            ctx.errorResponse({ message: 'Not found' }, 404)
+            return next()
+        }
+
+        const teams = await Teams.getListByCountry(id)
+
+        ctx.successResponse({
+            country,
+            teams,
+        })
+    } catch (e) {
+        ctx.errorResponse(e)
+    }
+
+    return next()
+}
+
 module.exports = {
     create,
     getList,
     update,
     remove,
+    getCountry,
 }

@@ -9,6 +9,7 @@ router
     .post('/countries/create', Countries.create)
     .put('/countries/update', Countries.update)
     .del('/countries/delete', Countries.remove)
+    .get('/countries/:id', Countries.getCountry)
 
 router
     .get('/teams/', Teams.getList)

@@ -62,6 +62,39 @@ npm run start
 }
 ```
 
+#### GET /countries/1
+
+*Response:*
+```json
+{
+    "status": true,
+    "result": {
+        "country": {
+            "id": 1,
+            "name": "Russia",
+            "created_at": "2019-02-13T07:51:59.732Z",
+            "updated_at": "2019-02-13T07:51:59.732Z"
+        },
+        "teams": [
+            {
+                "id": 1,
+                "country": "Russia",
+                "name": "Spartak Moscow",
+                "created_at": "2019-02-13T07:51:59.739Z",
+                "updated_at": "2019-02-13T07:51:59.739Z"
+            },
+            {
+                "id": 2,
+                "country": "Russia",
+                "name": "CSKA Moscow",
+                "created_at": "2019-02-13T07:51:59.739Z",
+                "updated_at": "2019-02-13T07:51:59.739Z"
+            }
+        ]
+    }
+}
+```
+
 #### POST /countries/create
 Country Creation Method.
 
@@ -100,10 +133,10 @@ Country Update Method.
 
 Payload description:
 
-| Key     | Description       | Is Required? |
-| ------- |:-----------------:| ------------:|
-| id      | Id of update item | yes          |
-| name    | Name of country   | yes          |
+| Key     | Description     | Is Required? |
+| ------- |:---------------:| ------------:|
+| id      | Item ID         | yes          |
+| name    | Name of country | yes          |
 
 *Request:*
 ```bash
@@ -133,9 +166,9 @@ Country Delete Method.
 
 Payload description:
 
-| Key     | Description        | Is Required? |
-| ------- |:------------------:| ------------:|
-| id      | Id of deleted item | yes          |
+| Key     | Description     | Is Required? |
+| ------- |:---------------:| ------------:|
+| id      | Item ID         | yes          |
 
 *Request:*
 ```bash

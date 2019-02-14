@@ -1,5 +1,13 @@
 const Joi = require('joi')
 
+const getCountry = ctx => {
+    const params = Joi.object().keys({
+        id: Joi.number().integer().required(),
+    })
+
+    ctx.validateParams(params)
+}
+
 const createCountry = ctx => {
     const body = Joi.object().keys({
         name: Joi.string().alphanum().min(3).max(30).required(),
@@ -53,14 +61,15 @@ const removeTeam = ctx => {
 }
 
 const getOneTeam = ctx => {
-    const query = Joi.object().keys({
+    const params = Joi.object().keys({
         id: Joi.number().integer().required(),
     })
 
-    ctx.validateQuery(query)
+    ctx.validateParams(params)
 }
 
 module.exports = {
+    getCountry,
     createCountry,
     updateCountry,
     removeCountry,

@@ -19,8 +19,16 @@ const remove = async id => {
 
 const getList = () => {
     return DB('teams as t')
-        .select('t.id', 'c.name as country', 't.name')
+        .select('t.id', 'c.name as country', 't.name', 't.created_at', 't.updated_at')
         .leftJoin('countries as c', 'c.id', 't.country')
+        .returning('*')
+}
+
+const getListByCountry = countryId => {
+    return DB('teams as t')
+        .select('t.id', 'c.name as country', 't.name', 't.created_at', 't.updated_at')
+        .leftJoin('countries as c', 'c.id', 't.country')
+        .where('t.country', countryId)
         .returning('*')
 }
 
@@ -37,4 +45,5 @@ module.exports = {
     remove,
     getList,
     getOne,
+    getListByCountry,
 }

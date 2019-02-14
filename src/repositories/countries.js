@@ -26,9 +26,17 @@ const getCountries = async () => {
         .returning('*')
 }
 
+const getOne = async id => {
+    return DB('countries')
+        .where({ id: id })
+        .returning('*')
+        .get(0)
+}
+
 module.exports = {
     create,
     update,
     remove,
     getCountries,
+    getOne,
 }

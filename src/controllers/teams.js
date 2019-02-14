@@ -71,11 +71,16 @@ const getOne = async (ctx, next) => {
     try {
         Validation.getOneTeam(ctx)
 
-        const { id } = ctx.request.query
+        const { id } = ctx.params
 
-        await Teams.getOne(id)
+        const team = await Teams.getOne(id)
 
-        ctx.successResponse()
+        if (!team) {
+            ctx.errorResponse({ message: 'Not found' }, 404)
+            return next()
+        }
+
+        ctx.successResponse(team)
     } catch (e) {
         ctx.errorResponse(e)
     }
