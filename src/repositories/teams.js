@@ -32,22 +32,23 @@ const remove = async id => {
 
 const getList = () => {
     return DB('teams as t')
-        .select('t.id', 'c.name as country', 't.name', 't.created_at', 't.updated_at')
+        .select('t.id', 'c.name as country', 'c.id as country_id', 't.name', 't.created_at', 't.updated_at')
         .leftJoin('countries as c', 'c.id', 't.country')
         .returning('*')
 }
 
 const getListByCountry = countryId => {
     return DB('teams as t')
-        .select('t.id', 'c.name as country', 't.name', 't.created_at', 't.updated_at')
-        .leftJoin('countries as c', 'c.id', 't.country')
+        .select('t.id', 't.name', 't.created_at', 't.updated_at')
         .where('t.country', countryId)
         .returning('*')
 }
 
 const getOne = async id => {
-    return DB('teams')
+    return DB('teams as t')
+        .select('t.id', 'c.name as country', 'c.id as country_id', 't.name', 't.created_at', 't.updated_at')
         .where({ id: id })
+        .leftJoin('countries as c', 'c.id', 't.country')
         .returning('*')
         .get(0)
 }

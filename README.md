@@ -77,15 +77,7 @@ npm run start
         },
         "teams": [
             {
-                "id": 1,
-                "country": "Russia",
-                "name": "Spartak Moscow",
-                "created_at": "2019-02-13T07:51:59.739Z",
-                "updated_at": "2019-02-13T07:51:59.739Z"
-            },
-            {
                 "id": 2,
-                "country": "Russia",
                 "name": "CSKA Moscow",
                 "created_at": "2019-02-13T07:51:59.739Z",
                 "updated_at": "2019-02-13T07:51:59.739Z"
@@ -202,6 +194,7 @@ curl -X DELETE \
         {
             "id": 1,
             "country": "Russia",
+            "country_id": 1,
             "name": "Spartak Moscow",
             "created_at": "2019-02-13T07:51:59.739Z",
             "updated_at": "2019-02-13T07:51:59.739Z"
@@ -218,7 +211,8 @@ curl -X DELETE \
     "status": true,
     "result": {
         "id": 1,
-        "country": 1,
+        "country": "Russia",
+        "country_id": 1,
         "name": "Spartak Moscow",
         "created_at": "2019-02-13T07:51:59.739Z",
         "updated_at": "2019-02-13T07:51:59.739Z"
