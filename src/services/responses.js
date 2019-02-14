@@ -1,5 +1,5 @@
 function successResponse (payload, code = 200) {
-    this.body = { status: true, payload }
+    this.body = { status: true, result: payload }
     this.status = code
 }
 

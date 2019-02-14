@@ -16,7 +16,7 @@ Documentation: https://github.com/lorenwest/node-config/wiki
 
 #### ENV
 
-| Key                  | Description                 | Default      |
+| Key                  | Description                  | Default     |
 | -------------------- |:----------------------------:| -----------:|
 | NODE_ENV             | Env for run application      | development |
 | API_PORT             | Port for application         | 5000        |
@@ -41,4 +41,118 @@ npm run dev
 Run for staging/production:
 ```bash
 npm run start
+```
+
+## Routes
+
+#### GET /countries
+
+*Response:*
+```json
+{
+    "status": true,
+    "result": [
+        {
+            "id": 1,
+            "name": "Russia",
+            "created_at": "2019-02-13T07:51:59.732Z",
+            "updated_at": "2019-02-13T07:51:59.732Z"
+        }
+    ]
+}
+```
+
+#### POST /countries/create
+Country Creation Method.
+
+Payload description:
+| Key  | Description     | Is Required? |
+| ---- |:---------------:| ------------:|
+| name | Name of country | yes          |
+
+*Request:*
+```bash
+curl -X POST \
+  http://localhost:5000/countries/create \
+  -H 'Content-Type: application/json' \
+  -H 'cache-control: no-cache' \
+  -d '{"name": "Turkey"}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"name\" fails because [\"name\" is required]"
+}
+```
+
+#### PUT /countries/update
+Country Update Method.
+
+Payload description:
+| Key     | Description       | Is Required? |
+| ------- |:-----------------:| ------------:|
+| id      | Id of update item | yes          |
+| name    | Name of country   | yes          |
+
+*Request:*
+```bash
+curl -X PUT \
+  http://localhost:5000/counntries/update \
+  -H 'Content-Type: application/json' \
+  -d '{"id": 9, "name": "Egypt"}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"id\" fails because [\"id\" is required]. child \"name\" fails because [\"name\" is required]"
+}
+```
+
+#### DELETE /countries/delete
+Country Delete Method.
+
+Payload description:
+| Key     | Description        | Is Required? |
+| ------- |:------------------:| ------------:|
+| id      | Id of deleted item | yes          |
+
+*Request:*
+```bash
+curl -X DELETE \
+  http://localhost:5000/teams/delete \
+  -H 'Content-Type: application/json' \
+  -d '{"id": 3}'
+```
+
+*Response (success):*
+```json
+{
+    "status": true
+}
+```
+
+*Response (error):*
+```json
+{
+    "status": false,
+    "error": "validation error child \"id\" fails because [\"id\" is required]"
+}
 ```
